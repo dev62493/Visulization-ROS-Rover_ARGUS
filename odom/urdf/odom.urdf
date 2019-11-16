@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot
+  name="odom">
+<gazebo>
+<plugin name="control" filename="libgazebo_ros_control.so"/>
+<robotNamespace>odom</robotNamespace>
+</gazebo>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.25693 -7.4487E-06 -0.19906"
+        rpy="0 0 0" />
+      <mass
+        value="18.409" />
+      <inertia
+        ixx="0.1731"
+        ixy="1.1375E-09"
+        ixz="9.388E-06"
+        iyy="0.20673"
+        iyz="-1.4136E-06"
+        izz="0.074396" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="mainlead">
+    <inertial>
+      <origin
+        xyz="-0.17935 -2.4909E-06 0.38419"
+        rpy="0 0 0" />
+      <mass
+        value="1.4332" />
+      <inertia
+        ixx="0.0012012"
+        ixy="-2.814E-08"
+        ixz="-2.5005E-05"
+        iyy="0.01448"
+        iyz="2.5511E-08"
+        izz="0.0152" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/mainlead.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/mainlead.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prism1"
+    type="prismatic">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="mainlead" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="0.15"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="horilead">
+    <inertial>
+      <origin
+        xyz="-0.28352 3.8414E-08 -0.035497"
+        rpy="0 0 0" />
+      <mass
+        value="1.7135" />
+      <inertia
+        ixx="0.0053368"
+        ixy="-5.7127E-10"
+        ixz="-8.7588E-06"
+        iyy="0.0027619"
+        iyz="4.7315E-12"
+        izz="0.00677" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/horilead.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89804 0.91765 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/horilead.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="prism2"
+    type="prismatic">
+    <origin
+      xyz="-0.1702 0 0.40871"
+      rpy="0 0 0" />
+    <parent
+      link="mainlead" />
+    <child
+      link="horilead" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-0.17"
+      upper="0.07"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="rotational1">
+    <inertial>
+      <origin
+        xyz="-0.065787 0.024466 -0.16695"
+        rpy="0 0 0" />
+      <mass
+        value="0.35324" />
+      <inertia
+        ixx="0.00081591"
+        ixy="0.00030148"
+        ixz="1.2093E-05"
+        iyy="0.0015145"
+        iyz="-4.4972E-06"
+        izz="0.0010663" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/rotational1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.77647 0.75686 0.73725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/rotational1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rot1"
+    type="revolute">
+    <origin
+      xyz="-0.30163 0 -0.0215"
+      rpy="0 0 0" />
+    <parent
+      link="horilead" />
+    <child
+      link="rotational1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="rotational2">
+    <inertial>
+      <origin
+        xyz="-0.035913 -0.0508 -0.054462"
+        rpy="0 0 0" />
+      <mass
+        value="0.029617" />
+      <inertia
+        ixx="4.2587E-05"
+        ixy="6.2209E-20"
+        ixz="-8.6696E-06"
+        iyy="3.9404E-05"
+        iyz="-1.0914E-22"
+        izz="5.5087E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/rotational2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/rotational2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rot2"
+    type="revolute">
+    <origin
+      xyz="-0.18662 0.1236 -0.15495"
+      rpy="0 0 -0.35604" />
+    <parent
+      link="rotational1" />
+    <child
+      link="rotational2" />
+    <axis
+      xyz="0 -1 0" />
+    <limit
+      lower="0"
+      upper="-3.14"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="continuous">
+    <inertial>
+      <origin
+        xyz="2.2421E-05 -8.6397E-05 0.12324"
+        rpy="0 0 0" />
+      <mass
+        value="0.44368" />
+      <inertia
+        ixx="0.00055154"
+        ixy="-3.9759E-07"
+        ixz="-1.0455E-08"
+        iyy="0.00055296"
+        iyz="3.349E-08"
+        izz="0.00071907" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/continuous.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://odom/meshes/continuous.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cont"
+    type="continuous">
+    <origin
+      xyz="-0.065102 -0.0508 -0.072275"
+      rpy="-3.1266 0.040194 0.35664" />
+    <parent
+      link="rotational2" />
+    <child
+      link="continuous" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+</robot>
