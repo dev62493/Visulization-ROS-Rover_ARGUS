@@ -1,0 +1,28 @@
+<launch>
+  <arg
+    name="model" />
+  <arg
+    name="gui"
+    default="True" />
+  <param
+    name="robot_description"
+    textfile="$(find odom)/urdf/odom.urdf" />
+  <param
+    name="use_gui"
+    value="$(arg gui)" />	
+
+<node
+    name="joint_state_publisher"
+    pkg="odom"
+    type="rover_odometery.py" />
+
+<node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="state_publisher" />
+<node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find odom)/odom.rviz" />
+</launch>
