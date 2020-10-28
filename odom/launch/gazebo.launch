@@ -14,7 +14,7 @@
     output="screen" />
 
 
-<rosparam file="$(find odom)/controllers.yaml" command="load"/>
+<rosparam file="$(find odom)/config/controllers.yaml" command="load"/>
 <node name="controller_spawner" pkg="controller_manager" type="spawner"
 args="arm_controller" ns="odom"/>  
 
